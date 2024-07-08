@@ -3,54 +3,66 @@ using UnityEngine;
 [System.Serializable]
 public struct Stats
 {
-    public int MaxHealth;
+    public int _MaxHealth;
 
     public Stats(int maxHealth)
     {
-        MaxHealth = maxHealth;
+        _MaxHealth = maxHealth;
     }
 }
 
 public class PlayerStats : MonoBehaviour
 {
+    
+    [SerializeField] private HealthBar _healthBar;
     [SerializeField] private Stats _playerStats;
     [SerializeField] private int _currentHealth;
 
-    void Start()
-    {
-        _playerStats = new(100);
-        _currentHealth = _playerStats.MaxHealth;
-    }
 
-    public void TakeDamage(int amount)
-    {
-        _currentHealth -= amount;
-        // UpdateHealthBar();
-    }
+    #region Unity Methods
 
-    private void GainHealth()
+    private void Start()
     {
-        _currentHealth = _playerStats.MaxHealth;
-        // UpdateHealthBar();
+        _healthBar.SetMaxHealth(_playerStats._MaxHealth);
+        _playerStats = new(_playerStats._MaxHealth);
+        _currentHealth = _playerStats._MaxHealth;
     }
-
-    // private void UpdateHealthBar()
-    // {
-    //     healthbar.value = _currentHealth;
-    // }
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
-            TakeDamage(2);
+            TakeDamage(1);
         }
-        
-        if (Input.GetKeyDown(KeyCode.L))
+
+        else if (Input.GetKeyDown(KeyCode.L))
         {
             GainHealth();
         }
     }
-}
 
+    #endregion
+    
+    #region Health Methods
+
+    private void TakeDamage(int amount)
+    {
+        _currentHealth -= amount;
+        UpdateHealthBar();
+    }
+
+    private void GainHealth()
+    {
+        _currentHealth = _playerStats._MaxHealth;
+        UpdateHealthBar();
+    }
+
+    private void UpdateHealthBar()
+    {
+        _healthBar.SetHealth(_currentHealth);
+    }
+
+    #endregion
+    
+}
 
