@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+sealed class HealthBar : MonoBehaviour
 {
     public Slider _Slider;
     public Gradient _Gradient;

@@ -4,46 +4,32 @@ using UnityEngine;
 public struct Stats
 {
     public int _MaxHealth;
-
-    public Stats(int maxHealth)
-    {
-        _MaxHealth = maxHealth;
-    }
+    public Stats(int maxHealth) { _MaxHealth = maxHealth; }
 }
 
-public class PlayerStats : MonoBehaviour
+sealed class PlayerStats : MonoBehaviour
 {
-    
     [SerializeField] private HealthBar _healthBar;
-    [SerializeField] private Stats _playerStats;
+    [SerializeField] private Stats _stats;
     [SerializeField] private int _currentHealth;
-
-
-    #region Unity Methods
+    public bool _IsAtMaxHealth;
 
     private void Start()
     {
-        _healthBar.SetMaxHealth(_playerStats._MaxHealth);
-        _playerStats = new(_playerStats._MaxHealth);
-        _currentHealth = _playerStats._MaxHealth;
+        _healthBar.SetMaxHealth(_stats._MaxHealth);
+        _stats = new(_stats._MaxHealth);
+        _currentHealth = _stats._MaxHealth;
     }
-    
+
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        HealthChecker();
+
+        if (Input.GetKey(KeyCode.I))
         {
             TakeDamage(1);
         }
-
-        else if (Input.GetKeyDown(KeyCode.L))
-        {
-            GainHealth();
-        }
     }
-
-    #endregion
-    
-    #region Health Methods
 
     private void TakeDamage(int amount)
     {
@@ -51,18 +37,34 @@ public class PlayerStats : MonoBehaviour
         UpdateHealthBar();
     }
 
-    private void GainHealth()
+    public void GainHealth()
     {
-        _currentHealth = _playerStats._MaxHealth;
+        _currentHealth = _stats._MaxHealth;
         UpdateHealthBar();
+    }
+    
+    private void HealthChecker()
+    {
+        if (_currentHealth <= 0)
+        {
+            // Some "Game Over" logic here...
+        }
+        
+        if (_currentHealth != _stats._MaxHealth)
+        {
+            _IsAtMaxHealth = false;
+            return;
+        }
+
+        if (_currentHealth == _stats._MaxHealth)
+        {
+            _IsAtMaxHealth = true;
+        }
     }
 
     private void UpdateHealthBar()
     {
         _healthBar.SetHealth(_currentHealth);
     }
-
-    #endregion
     
 }
-

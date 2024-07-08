@@ -679,6 +679,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd05cac39de6f6546a9f29468f000276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Slider: {fileID: 646238541}
+  _Gradient:
+    serializedVersion: 2
+    key0: {r: 0.2867924, g: 0.7398892, b: 1, a: 1}
+    key1: {r: 0.16760412, g: 0.589911, b: 0.8301887, a: 1}
+    key2: {r: 0.11149872, g: 0.47095954, b: 0.6792453, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 22359
+    ctime1: 45489
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_ColorSpace: -1
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  _Fill: {fileID: 504301449}
 --- !u!114 &646238541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,7 +758,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 3
   m_WholeNumbers: 1
-  m_Value: 2
+  m_Value: 3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1137,6 +1169,7 @@ GameObject:
   - component: {fileID: 2023421102}
   - component: {fileID: 2023421101}
   - component: {fileID: 2023421103}
+  - component: {fileID: 2023421104}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1224,9 +1257,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 534923859}
-  _playerStats:
+  _stats:
     _MaxHealth: 100
   _currentHealth: 0
+  _IsAtMaxHealth: 0
+--- !u!114 &2023421104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023421099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e856961a706db41842e72e1263989a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerStats: {fileID: 2023421103}
+  _medKitBar: {fileID: 646238540}
+  _numberOfMedKits: 0
 --- !u!1 &2082482914
 GameObject:
   m_ObjectHideFlags: 0
