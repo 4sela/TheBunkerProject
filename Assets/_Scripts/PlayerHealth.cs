@@ -39,7 +39,7 @@ sealed class PlayerHealth : MonoBehaviour
          *      MUST BE REMOVED OR REPLACED AT A LATER TIME!!
          */
 
-        #region REMOVE THESE IF-STATEMENTS ONCE A PERMANENT SOLUTION IS PUT IN PLACE.
+        #region REMOVE THIS IF-STATEMENT ONCE A PERMANENT SOLUTION IS PUT IN PLACE.
         
         if (Input.GetKey(KeyCode.I))
         {
